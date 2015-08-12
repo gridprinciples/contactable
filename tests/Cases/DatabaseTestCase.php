@@ -1,6 +1,6 @@
 <?php
 
-namespace GridPrinciples\Party\Tests;
+namespace GridPrinciples\Party\Tests\Cases;
 
 use GridPrinciples\Party\Providers\PartyServiceProvider;
 use Illuminate\Filesystem\ClassFinder;
@@ -16,7 +16,7 @@ abstract class DatabaseTestCase extends BaseTestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__ . '/../vendor/laravel/laravel/bootstrap/app.php';
+        $app = require __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
 
         // Register our package's service provider
         $app->register(PartyServiceProvider::class);
@@ -52,8 +52,8 @@ abstract class DatabaseTestCase extends BaseTestCase
         $fileSystem = new Filesystem;
         $classFinder = new ClassFinder;
 
-        $packageMigrations = $fileSystem->files(__DIR__ . "/../src/Migrations");
-        $laravelMigrations = $fileSystem->files(__DIR__ . "/../vendor/laravel/laravel/database/migrations");
+        $packageMigrations = $fileSystem->files(__DIR__ . "/../../src/Migrations");
+        $laravelMigrations = $fileSystem->files(__DIR__ . "/../../vendor/laravel/laravel/database/migrations");
 
         $migrationFiles = array_merge($laravelMigrations, $packageMigrations);
 

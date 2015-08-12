@@ -2,6 +2,7 @@
 
 namespace GridPrinciples\Party\Tests;
 
+use GridPrinciples\Party\Tests\Cases\DatabaseTestCase;
 use Illuminate\Support\Facades\Schema;
 
 class TableTest extends DatabaseTestCase

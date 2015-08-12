@@ -1,10 +1,8 @@
 <?php
 
-namespace GridPrinciples\Party\Tests;
+namespace GridPrinciples\Party\Tests\Cases;
 
 use GridPrinciples\Party\Providers\PartyServiceProvider;
-use Illuminate\Filesystem\ClassFinder;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
