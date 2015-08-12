@@ -12,14 +12,17 @@ class EmailAssociation extends DatabaseTestCase
     {
         $user = $this->createUser(['email' => 'me@example.com']);
 
-        $this->assertEquals($user->emails->count(), 1);
+        $this->assertCount(1, $user->emails);
+        $this->assertContains('me@example.com', $user->emails->lists('address'));
     }
 
     public function test_user_can_associate_multiple_email_addresses()
     {
         $user = $this->createUser(['email' => ['multi1@example.com', 'multi2@example.com']]);
 
-        $this->assertEquals($user->emails->count(), 2);
+        $this->assertCount(2, $user->emails);
+        $this->assertContains('multi1@example.com', $user->emails->lists('address'));
+        $this->assertContains('multi2@example.com', $user->emails->lists('address'));
     }
 
     public function test_user_can_delete_email_addresses()
@@ -29,7 +32,7 @@ class EmailAssociation extends DatabaseTestCase
         $user->email = false;
         $user->save();
 
-        $this->assertEquals($user->emails->count(), 0);
+        $this->assertCount(0, $user->emails);
     }
 
     private function createUser($attributes = [])
