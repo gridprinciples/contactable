@@ -9,6 +9,9 @@ trait Emailable {
 
     protected $stragglingEmails;
 
+    /**
+     * Load this trait.
+     */
     public static function bootEmailable()
     {
         self::saved(function ($model) {
@@ -16,16 +19,27 @@ trait Emailable {
         });
     }
 
+    /**
+     * The relationship to other models.
+     *
+     * @return mixed
+     */
     public function emails()
     {
         return $this->morphMany(EmailAddress::class, 'emailable');
     }
 
+    /**
+     * Mutator for the e-mail address "field", really a relationship.
+     *
+     * @param $emails
+     */
     public function setEmailAttribute($emails)
     {
         if($emails === FALSE)
         {
-            return $this->deleteAssociatedEmails();
+            $this->deleteAssociatedEmails();
+            return;
         }
 
         if(is_string($emails))
@@ -40,14 +54,21 @@ trait Emailable {
             $emails = collect((array) $emails);
         }
 
-        return $this->saveEmails($emails);
+        $this->saveEmails($emails);
     }
 
+    /**
+     * Given a Collection (or false), save as the current e-mails.
+     *
+     * @param $emails Collection|boolean
+     * @return $this
+     */
     protected function saveEmails($emails)
     {
         if($emails === FALSE)
         {
-            return $this->emails()->delete();
+            $this->emails()->delete();
+            return;
         }
 
         foreach($emails as $k => $address)
@@ -65,27 +86,36 @@ trait Emailable {
         {
             // Record doesn't exist, so defer until it's saved.
             $this->stragglingEmails = $emails;
-            return;
+        }
+        else
+        {
+            foreach($emails as $email)
+            {
+                $email->emailable()->associate($this);
+                $email->save();
+            }
         }
 
-        foreach($emails as $email)
-        {
-            $email->emailable()->associate($this);
-            $email->save();
-        }
+
         return;
     }
 
+    /**
+     * Delete all associated e-mails, on save.
+     */
     protected function deleteAssociatedEmails()
     {
         $this->stragglingEmails = FALSE;
     }
 
-    public function saveStragglingEmails()
+    /**
+     * Save any cached "stragglers".
+     */
+    protected function saveStragglingEmails()
     {
         if($this->stragglingEmails !== NULL)
         {
-            return $this->saveEmails($this->stragglingEmails);
+            $this->saveEmails($this->stragglingEmails);
         }
     }
 
