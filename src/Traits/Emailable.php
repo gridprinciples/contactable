@@ -11,7 +11,7 @@ trait Emailable {
 
     public static function bootEmailable()
     {
-        self::created(function ($model) {
+        self::saved(function ($model) {
             $model->saveStragglingEmails();
         });
     }
@@ -23,6 +23,11 @@ trait Emailable {
 
     public function setEmailAttribute($emails)
     {
+        if($emails === FALSE)
+        {
+            return $this->deleteAssociatedEmails();
+        }
+
         if(is_string($emails))
         {
             // Only one e-mail was passed as a string
@@ -38,8 +43,13 @@ trait Emailable {
         return $this->saveEmails($emails);
     }
 
-    protected function saveEmails(Collection $emails)
+    protected function saveEmails($emails)
     {
+        if($emails === FALSE)
+        {
+            return $this->emails()->delete();
+        }
+
         foreach($emails as $k => $address)
         {
             if(is_object($address) && get_class($address) === EmailAddress::class)
@@ -66,9 +76,14 @@ trait Emailable {
         return;
     }
 
+    protected function deleteAssociatedEmails()
+    {
+        $this->stragglingEmails = FALSE;
+    }
+
     public function saveStragglingEmails()
     {
-        if($this->stragglingEmails)
+        if($this->stragglingEmails !== NULL)
         {
             return $this->saveEmails($this->stragglingEmails);
         }
