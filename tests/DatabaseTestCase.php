@@ -52,7 +52,12 @@ abstract class DatabaseTestCase extends BaseTestCase
         $fileSystem = new Filesystem;
         $classFinder = new ClassFinder;
 
-        foreach ($fileSystem->files(__DIR__ . "/../src/Migrations") as $file) {
+        $packageMigrations = $fileSystem->files(__DIR__ . "/../src/Migrations");
+        $laravelMigrations = $fileSystem->files(__DIR__ . "/../vendor/laravel/laravel/database/migrations");
+
+        $migrationFiles = array_merge($laravelMigrations, $packageMigrations);
+
+        foreach ($migrationFiles as $file) {
             $fileSystem->requireOnce($file);
             $migrationClass = $classFinder->findClass($file);
 
