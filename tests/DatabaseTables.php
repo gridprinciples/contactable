@@ -5,11 +5,16 @@ namespace GridPrinciples\Party\Tests;
 use GridPrinciples\Party\Tests\Cases\DatabaseTestCase;
 use Illuminate\Support\Facades\Schema;
 
-class TableTest extends DatabaseTestCase
+class DatabaseTables extends DatabaseTestCase
 {
-    public function testTablesExist()
+    /**
+     * Ensures the migrations ran and tables exist in the database.
+     */
+    public function test_tables_exist()
     {
         foreach ([
+                     'users',
+                     'password_resets',
                      'email_addresses',
                      'phone_numbers',
                  ] as $table) {

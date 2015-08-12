@@ -13,6 +13,9 @@ class CreateEmailAddressesTable extends Migration
 
             $table->bigInteger('emailable_id')->unsigned()->index();
             $table->string('emailable_type');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
