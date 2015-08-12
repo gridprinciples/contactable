@@ -2,10 +2,12 @@
 
 namespace GridPrinciples\Party\Tests\Cases;
 
+use App\User;
 use GridPrinciples\Party\Providers\PartyServiceProvider;
 use Illuminate\Filesystem\ClassFinder;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\DB;
 
 abstract class DatabaseTestCase extends BaseTestCase
 {

@@ -13,6 +13,11 @@ class EmailAddress extends Model {
     protected $fillable = ['address'];
     protected $visible = ['address'];
 
+    /**
+     * Relationship to other models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function emailable()
     {
         return $this->morphTo();

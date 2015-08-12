@@ -2,12 +2,13 @@
 
 namespace GridPrinciples\Party\Tests;
 
-use App\User;
-use GridPrinciples\Party\EmailAddress;
-use GridPrinciples\Party\Tests\Cases\DatabaseTestCase;
+use GridPrinciples\Party\Tests\Cases\UserTestCase;
+use GridPrinciples\Party\Tests\Mocks\User;
 
-class EmailAssociation extends DatabaseTestCase
+class EmailAssociation extends UserTestCase
 {
+    protected $mockUserClass = User::class;
+
     public function test_user_can_associate_one_email_address()
     {
         $user = $this->createUser(['email' => 'me@example.com']);
@@ -33,22 +34,5 @@ class EmailAssociation extends DatabaseTestCase
         $user->save();
 
         $this->assertCount(0, $user->emails);
-    }
-
-    private function createUser($attributes = [])
-    {
-        $defaultAttributes = [
-            'name' => 'Human Being',
-            'password' => bcrypt('password'),
-        ];
-        $attributes = array_merge($defaultAttributes, $attributes);
-
-        // Mock up the assumed workflow: the app's User model `use`s the Emailable trait.
-        $user = $this->getMockForAbstractClass(Mocks\UserWithEmailableTrait::class);
-
-        $user->fill($attributes);
-        $user->save();
-
-        return $user;
     }
 }
