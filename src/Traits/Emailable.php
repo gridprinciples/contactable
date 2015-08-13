@@ -5,9 +5,9 @@ namespace GridPrinciples\Party\Traits;
 use GridPrinciples\Party\EmailAddress;
 use Illuminate\Support\Collection;
 
-trait Emailable {
-
-    protected $stragglingEmails;
+trait Emailable
+{
+    protected $emailsToSave;
 
     /**
      * Load this trait.
@@ -15,7 +15,7 @@ trait Emailable {
     public static function bootEmailable()
     {
         self::saved(function ($model) {
-            $model->saveStragglingEmails();
+            $model->applyRelatedEmails();
         });
     }
 
@@ -36,45 +36,35 @@ trait Emailable {
      */
     public function setEmailAttribute($emails)
     {
-        if($emails === FALSE)
-        {
-            $this->deleteAssociatedEmails();
+        if ($emails === false) {
+            $this->deleteRelatedEmailsOnSave();
+
             return;
         }
 
-        if(is_string($emails))
-        {
+        if (is_string($emails)) {
             // Only one e-mail was passed as a string
             $emails = [$emails];
         }
 
-        if(!is_object($emails) || !class_basename($emails) === 'Collection')
-        {
+        if (!is_object($emails) || !class_basename($emails) === 'Collection') {
             // Collect the values into a Collection
-            $emails = collect((array) $emails);
+            $emails = collect((array)$emails);
         }
 
         $this->saveEmails($emails);
     }
 
     /**
-     * Given a Collection (or false), save as the current e-mails.
+     * Given a Collection, save as the current e-mails.
      *
-     * @param $emails Collection|boolean
+     * @param $emails Collection
      * @return $this
      */
-    protected function saveEmails($emails)
+    protected function saveEmails(Collection $emails)
     {
-        if($emails === FALSE)
-        {
-            $this->emails()->delete();
-            return;
-        }
-
-        foreach($emails as $k => $address)
-        {
-            if(is_object($address) && get_class($address) === EmailAddress::class)
-            {
+        foreach ($emails as $k => $address) {
+            if (is_object($address) && get_class($address) === EmailAddress::class) {
                 // This is already an e-mail address object.
                 continue;
             }
@@ -82,41 +72,42 @@ trait Emailable {
             $emails[$k] = new EmailAddress(['address' => $address]);
         }
 
-        if(!$this->exists)
-        {
+        if (!$this->exists) {
             // Record doesn't exist, so defer until it's saved.
-            $this->stragglingEmails = $emails;
-        }
-        else
-        {
-            foreach($emails as $email)
-            {
+            $this->emailsToSave = $emails;
+        } else {
+            foreach ($emails as $email) {
                 $email->emailable()->associate($this);
                 $email->save();
             }
         }
-
 
         return;
     }
 
     /**
      * Delete all associated e-mails, on save.
+     * Doesn't actually do anything, yet.  Defers until the "save" method is run.
      */
-    protected function deleteAssociatedEmails()
+    protected function deleteRelatedEmailsOnSave()
     {
-        $this->stragglingEmails = FALSE;
+        $this->emailsToSave = false;
     }
 
     /**
      * Save any cached "stragglers".
      */
-    protected function saveStragglingEmails()
+    protected function applyRelatedEmails()
     {
-        if($this->stragglingEmails !== NULL)
-        {
-            $this->saveEmails($this->stragglingEmails);
+        if ($this->emailsToSave) {
+            $this->saveEmails($this->emailsToSave);
+        } elseif ($this->emailsToSave === false) {
+            $this->deleteEmails();
         }
     }
 
+    protected function deleteEmails()
+    {
+        $this->emails()->delete();
+    }
 }
