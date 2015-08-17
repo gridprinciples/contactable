@@ -1,9 +1,12 @@
 <?php
 
+/**
+ * Relates any model with e-mail addresses.
+ */
+
 namespace GridPrinciples\Party\Traits;
 
 use GridPrinciples\Party\EmailAddress;
-use Illuminate\Support\Collection;
 
 trait Emailable
 {
