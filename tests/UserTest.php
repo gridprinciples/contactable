@@ -10,6 +10,6 @@ class UserTest extends UserTestCase
     {
         $this->createUser(['name' => 'Party Guy']);
 
-        $this->seeInDatabase('users', ['short_name' => 'Party Guy']);
+        $this->seeInDatabase('users', ['name' => 'Party Guy']);
     }
 }

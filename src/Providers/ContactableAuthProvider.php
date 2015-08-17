@@ -45,7 +45,7 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
 
         if (config('contactable.login_methods.username')) {
             // login via username
-            $query->orWhere('user_name', '=', strtolower($username));
+            $query->orWhere('name', '=', strtolower($username));
         }
 
         return $query->first();

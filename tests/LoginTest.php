@@ -58,7 +58,7 @@ class LoginTest extends UserTestCase
 
     public function test_user_can_log_in_with_username()
     {
-        $user = $this->createUser(['user_name' => 'megaguy', 'password' => bcrypt('usernamepassword')]);
+        $user = $this->createUser(['name' => 'megaguy', 'password' => bcrypt('usernamepassword')]);
 
         $this->assertTrue(Auth::attempt(['username' => 'Megaguy', 'password' => 'usernamepassword']));
     }
