@@ -16,10 +16,11 @@ abstract class TestCase extends BaseTestCase
     {
         $app = require __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
 
+        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+
         // Register our package's service provider
         $app->register(PartyServiceProvider::class);
 
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
         return $app;
     }
