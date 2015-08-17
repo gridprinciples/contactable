@@ -87,7 +87,7 @@ trait Emailable
 
     /**
      * Delete all associated e-mails, on save.
-     * Doesn't actually do anything, yet.  Defers until the "save" method is run.
+     * Doesn't actually do anything.  Defers until the "save" method is run.
      */
     protected function deleteRelatedEmailsOnSave()
     {

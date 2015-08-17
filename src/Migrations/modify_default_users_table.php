@@ -20,19 +20,22 @@ class ModifyDefaultUsersTable extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->string('party_id')->unsigned()->index()->default('');
+            $table->string('user_name')->default('');
+            $table->string('legal_name')->nullable();
+            $table->string('short_name')->nullable();
+            $table->string('type')->default('');
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name');
             $table->string('email')->unique();
+            $table->string('name');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('party_id');
+            $table->dropColumn('legal_name');
         });
     }
 }
