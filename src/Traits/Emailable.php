@@ -13,7 +13,7 @@ trait Emailable
     /**
      * The relationship to other models.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function emails()
     {

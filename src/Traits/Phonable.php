@@ -13,7 +13,7 @@ trait Phonable
     /**
      * The relationship to other models.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function phones()
     {
