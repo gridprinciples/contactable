@@ -16,7 +16,7 @@ abstract class UserTestCase extends DatabaseTestCase {
         ];
         $attributes = array_merge($defaultAttributes, $attributes);
 
-        // Mock up the assumed workflow: the app's User model `use`s the Emailable trait.
+        // Mock up the assumed workflow: the app's User model `use`s the Contactable trait.
         $user = $this->getMockForAbstractClass($this->mockUserClass);
 
         $user->fill($attributes);
