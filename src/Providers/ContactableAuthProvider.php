@@ -23,13 +23,17 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
 
         $query = with(new User)->newQuery();
 
-        $query->orWhereHas('emails', function ($q) use ($email) {
-            $q->where('address', '=', $email);
-        });
+        if (in_array('emails', config('contactable.login_methods'))) {
+            $query->orWhereHas('emails', function ($q) use ($email) {
+                $q->where('address', '=', $email);
+            });
+        }
 
-        $query->orWhereHas('phones', function ($q) use ($phone) {
-            $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
-        });
+        if (in_array('phones', config('contactable.login_methods'))) {
+            $query->orWhereHas('phones', function ($q) use ($phone) {
+                $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
+            });
+        }
 
         return $query->first();
     }

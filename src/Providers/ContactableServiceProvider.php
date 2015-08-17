@@ -7,7 +7,7 @@ use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
-class PartyServiceProvider extends ServiceProvider
+class ContactableServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
@@ -16,7 +16,9 @@ class PartyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/contactable.php', 'contactable'
+        );
     }
 
     /**
@@ -26,6 +28,10 @@ class PartyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../config/contactable.php' => config_path('contactable.php'),
+        ]);
+
         Auth::extend('contactable', function() {
             // Return an instance of Illuminate\Contracts\Auth\UserProvider...
             return new ContactableAuthProvider(new BcryptHasher(), '\App\User');

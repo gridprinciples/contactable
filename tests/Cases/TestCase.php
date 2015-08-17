@@ -2,7 +2,7 @@
 
 namespace GridPrinciples\Party\Tests\Cases;
 
-use GridPrinciples\Party\Providers\PartyServiceProvider;
+use GridPrinciples\Party\Providers\ContactableServiceProvider;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -19,8 +19,12 @@ abstract class TestCase extends BaseTestCase
         $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
         // Register our package's service provider
-        $app->register(PartyServiceProvider::class);
+        $app->register(ContactableServiceProvider::class);
 
+        // Set app configuration
+        config([
+            'auth.driver' => 'contactable',
+        ]);
 
         return $app;
     }
