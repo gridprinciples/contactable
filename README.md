@@ -24,22 +24,29 @@ In order to use the default login capabilities ("login via e-mail, phone number,
 1. Set the authentication driver by changing `driver` under `config/auth`:  
     `'driver' => 'contactable',`
 
-If you would like additional models to have their own phone numbers or e-mail addresses, add the appropriate
-trait to the model:
+### Using Default Laravel 5.1 Authentication
+If you are using Laravel's included authentication (via [the documentation](http://laravel.com/docs/5.1/authentication)),
+installing Contactable for logins is a breeze.
+
+1. Add `protected $username = 'username';` to the top of your `AuthController`.
+1. Edit your`<input>`'s **name** in `login.blade.php` **username** instead of **email**.
+
+That's it!  You will need to code your own registration and validation (default implementations are in 
+`AuthController`, functions `validator` and `create`).
+
+
+## Examples
+For any models you would like to have their own phone numbers or e-mail addresses, add the appropriate trait:
 
     use Phonable;  
     use Emailable;
     
-...or use the `Contactable` trait to quickly add phones **and** e-mails:
+...or use the `Contactable` trait to quickly add phones *and* e-mails:
     
     use Contactable;
 
-The above traits simply add the appropriate relationships to your model.
-
-## Examples
-
-Once your model(s) are using the appropriate traits, you may query the relationships using
-[Eloquent](http://laravel.com/docs/5.1/eloquent-relationships#querying-relations).
+The above traits simply add the appropriate relationships to your model.  Now, you may query the relationships using
+[Eloquent](http://laravel.com/docs/5.1/eloquent-relationships#querying-relations) as you normally would.
 
 **E-mail addresses** are accessed via the "emails()" method (a MorphMany relationship):
 ```php
@@ -87,3 +94,4 @@ Model::whereHas('phones', function ($query) use ($number) {
     $query->where('raw_number', '=', preg_replace("/[^0-9]/", '', $number)); // query only the numbers
 });
 ```
+
