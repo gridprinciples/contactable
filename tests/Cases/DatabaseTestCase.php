@@ -25,6 +25,11 @@ abstract class DatabaseTestCase extends BaseTestCase
 
         $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
+        // Set app configuration
+        config([
+            'auth.driver' => 'contactable',
+        ]);
+
         return $app;
     }
 
