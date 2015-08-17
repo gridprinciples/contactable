@@ -29,7 +29,11 @@ class ContactableServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../../config/contactable.php' => config_path('contactable.php'),
-        ]);
+        ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../Migrations/' => database_path('migrations')
+        ], 'migrations');
 
         Auth::extend('contactable', function() {
             // Return an instance of Illuminate\Contracts\Auth\UserProvider...
