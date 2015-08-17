@@ -9,7 +9,7 @@ class CreateEmailAddressesTable extends Migration
     {
         Schema::create('email_addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('address');
+            $table->string('address')->unique();
 
             $table->bigInteger('emailable_id')->unsigned()->index();
             $table->string('emailable_type');
