@@ -20,19 +20,36 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
     {
         $email = array_get($credentials, 'email');
         $phone = array_get($credentials, 'phone');
+        $username = array_get($credentials, 'name');
+
+        $email = strtolower($email);
+        $username = strtolower($username);
 
         $query = with(new User)->newQuery();
 
-        if (in_array('emails', config('contactable.login_methods'))) {
-            $query->orWhereHas('emails', function ($q) use ($email) {
+        if(empty(array_filter(config('contactable.login_methods'))))
+        {
+            // No login methods active; fail.
+            return null;
+        }
+
+        if ($email && config('contactable.login_methods.emails')) {
+            // login via e-mail
+            $query->whereHas('emails', function ($q) use ($email) {
                 $q->where('address', '=', $email);
             });
         }
 
-        if (in_array('phones', config('contactable.login_methods'))) {
-            $query->orWhereHas('phones', function ($q) use ($phone) {
+        if ($phone && config('contactable.login_methods.phones')) {
+            // login via phone
+            $query->whereHas('phones', function ($q) use ($phone) {
                 $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
             });
+        }
+
+        if ($username && config('contactable.login_methods.username')) {
+            // login via username
+            $query->where('user_name', '=', $username);
         }
 
         return $query->first();

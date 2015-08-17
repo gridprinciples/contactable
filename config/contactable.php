@@ -2,8 +2,8 @@
 
 return [
     'login_methods' => [
-        'username',
-        'emails',
-        'phones',
+        'username' => true,
+        'emails' => true,
+        'phones' => true,
     ],
 ];

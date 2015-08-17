@@ -23,4 +23,14 @@ class EmailAddress extends Model {
         return $this->morphTo();
     }
 
+    /**
+     * Morph the `address` field to lowercase.
+     *
+     * @param $value
+     */
+    public function setAddressAttribute($value)
+    {
+        $this->attributes['address'] = strtolower($value);
+    }
+
 }

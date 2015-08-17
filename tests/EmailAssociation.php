@@ -10,7 +10,7 @@ class EmailAssociation extends UserTestCase
     public function test_user_can_associate_one_email_address()
     {
         $user = $this->createUser();
-        $user->emails()->save(new EmailAddress(['address' => 'me@example.com']));
+        $user->emails()->save(new EmailAddress(['address' => 'ME@Example.com']));
 
         $this->assertCount(1, $user->emails);
         $this->assertContains('me@example.com', $user->emails->lists('address'));

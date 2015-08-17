@@ -13,7 +13,7 @@ class User extends BaseUser {
 
     protected $nameField = 'short_name';
 
-    protected $fillable = ['email', 'password', 'name'];
+    protected $fillable = ['email', 'password', 'name', 'user_name', 'legal_name'];
 
     protected $morphClass = 'GridPrinciples\Party\Tests\Mocks\User';
 }
