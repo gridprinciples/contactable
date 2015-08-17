@@ -11,11 +11,15 @@ class CreatePhoneNumbersTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('number');
+            $table->string('raw_number');
             $table->string('type', 64)->nullable()->default('work');
             $table->string('country', 2)->default('us');
 
             $table->bigInteger('phonable_id')->unsigned()->index();
             $table->string('phonable_type');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

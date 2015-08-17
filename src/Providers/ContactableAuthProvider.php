@@ -8,8 +8,8 @@ use GridPrinciples\Party\Party;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\UserProvider;
 
-class ContactableAuthProvider extends EloquentUserProvider implements UserProvider {
-
+class ContactableAuthProvider extends EloquentUserProvider implements UserProvider
+{
     /**
      * Retrieve a user by the given credentials.
      *
@@ -19,12 +19,18 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
     public function retrieveByCredentials(array $credentials)
     {
         $email = array_get($credentials, 'email');
+        $phone = array_get($credentials, 'phone');
 
-        $user = User::whereHas('emails', function ($q) use ($email) {
+        $query = with(new User)->newQuery();
+
+        $query->orWhereHas('emails', function ($q) use ($email) {
             $q->where('address', '=', $email);
-        })->first();
+        });
 
-        return $user;
+        $query->orWhereHas('phones', function ($q) use ($phone) {
+            $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
+        });
+
+        return $query->first();
     }
-
 }
