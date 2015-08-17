@@ -27,14 +27,17 @@ class ContactableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Publish configuration
         $this->publishes([
             __DIR__.'/../../config/contactable.php' => config_path('contactable.php'),
         ], 'config');
 
+        // Publish migrations
         $this->publishes([
             __DIR__.'/../Migrations/' => database_path('migrations')
         ], 'migrations');
 
+        // Add authentication driver
         Auth::extend('contactable', function() {
             // Return an instance of Illuminate\Contracts\Auth\UserProvider...
             return new ContactableAuthProvider(app('hash'), '\App\User');
