@@ -2,37 +2,11 @@
 
 namespace GridPrinciples\Party\Tests\Cases;
 
-use App\User;
-use GridPrinciples\Party\Providers\PartyServiceProvider;
 use Illuminate\Filesystem\ClassFinder;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Support\Facades\DB;
 
-abstract class DatabaseTestCase extends BaseTestCase
+abstract class DatabaseTestCase extends TestCase
 {
-    /**
-     * Boots the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
-
-        // Register our package's service provider
-        $app->register(PartyServiceProvider::class);
-
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
-
-        // Set app configuration
-        config([
-            'auth.driver' => 'contactable',
-        ]);
-
-        return $app;
-    }
-
     /**
      * Setup DB before each test.
      *
