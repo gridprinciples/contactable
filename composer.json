@@ -1,8 +1,8 @@
 {
-    "name": "gridprinciples/party",
+    "name": "gridprinciples/contactable",
     "autoload": {
         "psr-4": {
-            "GridPrinciples\\Party\\": "src/"
+            "GridPrinciples\\Contactable\\": "src/"
         }
     },
     "require-dev": {
@@ -13,7 +13,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "GridPrinciples\\Party\\Tests\\": "tests/"
+            "GridPrinciples\\Contactable\\Tests\\": "tests/"
         }
     }
 }

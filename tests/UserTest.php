@@ -1,8 +1,8 @@
 <?php
 
-namespace GridPrinciples\Party\Tests;
+namespace GridPrinciples\Contactable\Tests;
 
-use GridPrinciples\Party\Tests\Cases\UserTestCase;
+use GridPrinciples\Contactable\Tests\Cases\UserTestCase;
 
 class UserTest extends UserTestCase
 {

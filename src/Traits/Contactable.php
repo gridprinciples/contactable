@@ -1,6 +1,6 @@
 <?php
 
-namespace GridPrinciples\Party\Traits;
+namespace GridPrinciples\Contactable\Traits;
 
 trait Contactable {
     use Emailable, Phonable;

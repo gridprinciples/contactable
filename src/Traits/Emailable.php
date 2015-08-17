@@ -4,9 +4,9 @@
  * Relates any model with e-mail addresses.
  */
 
-namespace GridPrinciples\Party\Traits;
+namespace GridPrinciples\Contactable\Traits;
 
-use GridPrinciples\Party\EmailAddress;
+use GridPrinciples\Contactable\EmailAddress;
 
 trait Emailable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace GridPrinciples\Party;
+namespace GridPrinciples\Contactable;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

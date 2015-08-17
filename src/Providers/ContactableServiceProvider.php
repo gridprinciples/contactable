@@ -1,8 +1,8 @@
 <?php
 
-namespace GridPrinciples\Party\Providers;
+namespace GridPrinciples\Contactable\Providers;
 
-use GridPrinciples\Party\Providers\ContactableAuthProvider;
+use GridPrinciples\Contactable\Providers\ContactableAuthProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,10 +37,14 @@ class ContactableServiceProvider extends ServiceProvider
             __DIR__.'/../Migrations/' => database_path('migrations')
         ], 'migrations');
 
-        // Add authentication driver
-        Auth::extend('contactable', function() {
-            // Return an instance of Illuminate\Contracts\Auth\UserProvider...
+        app()->bind('ContactableAuthProvider', function () {
             return new ContactableAuthProvider(app('hash'), '\App\User');
+        });
+
+        // Add authentication driver
+        Auth::extend('contactable', function($app) {
+            // Return an instance of Illuminate\Contracts\Auth\UserProvider...
+            return $app->make('ContactableAuthProvider');
         });
     }
 }

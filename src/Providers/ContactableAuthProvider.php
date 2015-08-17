@@ -1,15 +1,14 @@
 <?php
 
-namespace GridPrinciples\Party\Providers;
+namespace GridPrinciples\Contactable\Providers;
 
-use GridPrinciples\Party\EmailAddress;
-use GridPrinciples\Party\Tests\Mocks\User;
-use GridPrinciples\Party\Party;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\UserProvider;
 
 class ContactableAuthProvider extends EloquentUserProvider implements UserProvider
 {
+    protected $userModel = \App\User::class;
+
     /**
      * Retrieve a user by the given credentials.
      *
@@ -22,7 +21,7 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
         $email = array_get($credentials, config('contactable.input_key.emails'));
         $phone = array_get($credentials, config('contactable.input_key.phones'));
 
-        $query = with(new User)->newQuery();
+        $query = with(new $this->userModel)->newQuery();
 
         if (empty(array_filter(config('contactable.login_methods')))) {
             // No login methods active; fail.

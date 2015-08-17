@@ -1,8 +1,9 @@
 <?php
 
-namespace GridPrinciples\Party\Tests\Cases;
+namespace GridPrinciples\Contactable\Tests\Cases;
 
-use GridPrinciples\Party\Providers\ContactableServiceProvider;
+use GridPrinciples\Contactable\Providers\ContactableServiceProvider;
+use GridPrinciples\Contactable\Tests\Mocks\ContactableAuthProvider;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -20,6 +21,11 @@ abstract class TestCase extends BaseTestCase
 
         // Register our package's service provider
         $app->register(ContactableServiceProvider::class);
+
+        // Bind the auth implementation with a mocked one so we may inject the mock User class
+        $app->bind('ContactableAuthProvider', function ($app) {
+            return new \GridPrinciples\Contactable\Tests\Mocks\ContactableAuthProvider(app('hash'), '\App\User');
+        });
 
         // Set app configuration
         config([

@@ -1,10 +1,10 @@
 <?php
 
-namespace GridPrinciples\Party\Tests;
+namespace GridPrinciples\Contactable\Tests;
 
-use GridPrinciples\Party\EmailAddress;
-use GridPrinciples\Party\PhoneNumber;
-use GridPrinciples\Party\Tests\Cases\UserTestCase;
+use GridPrinciples\Contactable\EmailAddress;
+use GridPrinciples\Contactable\PhoneNumber;
+use GridPrinciples\Contactable\Tests\Cases\UserTestCase;
 use Illuminate\Support\Facades\Auth;
 
 class LoginTest extends UserTestCase

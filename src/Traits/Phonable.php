@@ -4,9 +4,9 @@
  * Relates any model with phone numbers.
  */
 
-namespace GridPrinciples\Party\Traits;
+namespace GridPrinciples\Contactable\Traits;
 
-use GridPrinciples\Party\PhoneNumber;
+use GridPrinciples\Contactable\PhoneNumber;
 
 trait Phonable
 {

@@ -4,7 +4,7 @@
  * This trait will set empty fields defined in the $nullable array as NULL on save.
  */
 
-namespace GridPrinciples\Party\Traits;
+namespace GridPrinciples\Contactable\Traits;
 
 trait Nullable
 {

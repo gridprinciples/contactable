@@ -1,8 +1,8 @@
 <?php
 
-namespace GridPrinciples\Party\Tests\Cases;
+namespace GridPrinciples\Contactable\Tests\Cases;
 
-use GridPrinciples\Party\Tests\Mocks\User;
+use GridPrinciples\Contactable\Tests\Mocks\User;
 
 abstract class UserTestCase extends DatabaseTestCase {
 
