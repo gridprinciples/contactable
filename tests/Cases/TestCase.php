@@ -14,7 +14,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__ . '/../vendor/laravel/laravel/bootstrap/app.php';
+        $app = require __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
 
         // Register our package's service provider
         $app->register(PartyServiceProvider::class);
