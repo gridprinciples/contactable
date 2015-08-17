@@ -8,8 +8,6 @@ namespace GridPrinciples\Party\Traits;
 
 trait Nullable
 {
-    protected $nullable = [];
-
     protected static function bootNullable()
     {
         static::saving(function ($model) {
@@ -23,9 +21,12 @@ trait Nullable
      */
     protected function setNullables()
     {
-        foreach ($this->nullable as $field) {
-            if (empty($this->{$field})) {
-                $this->{$field} = null;
+        if(isset($this->nullable))
+        {
+            foreach ($this->nullable as $field) {
+                if (empty($this->{$field})) {
+                    $this->{$field} = null;
+                }
             }
         }
     }
