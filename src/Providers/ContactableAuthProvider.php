@@ -18,8 +18,9 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
      */
     public function retrieveByCredentials(array $credentials)
     {
-        $credentials = array_get($credentials, 'username');
-        $credentials = strtolower($credentials); // logins are case-insensitive
+        $username = array_get($credentials, config('contactable.input_key.username'));
+        $email = array_get($credentials, config('contactable.input_key.emails'));
+        $phone = array_get($credentials, config('contactable.input_key.phones'));
 
         $query = with(new User)->newQuery();
 
@@ -30,21 +31,21 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
 
         if (config('contactable.login_methods.emails')) {
             // login via e-mail
-            $query->orWhereHas('emails', function ($q) use ($credentials) {
-                $q->where('address', '=', $credentials);
+            $query->orWhereHas('emails', function ($q) use ($email) {
+                $q->where('address', '=', strtolower($email));
             });
         }
 
         if (config('contactable.login_methods.phones')) {
             // login via phone
-            $query->orWhereHas('phones', function ($q) use ($credentials) {
-                $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $credentials));
+            $query->orWhereHas('phones', function ($q) use ($phone) {
+                $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
             });
         }
 
         if (config('contactable.login_methods.username')) {
             // login via username
-            $query->orWhere('user_name', '=', $credentials);
+            $query->orWhere('user_name', '=', strtolower($username));
         }
 
         return $query->first();
