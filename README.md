@@ -1,4 +1,4 @@
-# Contactable [![Build Status](https://travis-ci.org/gridprinciples/Contactable.svg?branch=master)](https://travis-ci.org/gbrock/contactable)
+# Contactable [![Build Status](https://travis-ci.org/gridprinciples/Contactable.svg?branch=master)](https://travis-ci.org/gridprinciples/Contactable)
 
 A [Laravel 5.1](http://laravel.com/docs/5.1) package designed to enhance Eloquent users (or any other model) with relations to 
 multiple e-mail addresses and phone numbers, additionally allowing users to login with any of the above.
