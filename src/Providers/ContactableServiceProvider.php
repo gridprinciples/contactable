@@ -38,7 +38,7 @@ class ContactableServiceProvider extends ServiceProvider
         ], 'migrations');
 
         app()->bind('ContactableAuthProvider', function () {
-            return new ContactableAuthProvider(app('hash'), '\App\User');
+            return new ContactableAuthProvider(app('hash'), config('auth.model', \App\User::class));
         });
 
         // Add authentication driver

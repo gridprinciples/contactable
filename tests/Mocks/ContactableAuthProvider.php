@@ -6,6 +6,6 @@ use GridPrinciples\Contactable\Providers\ContactableAuthProvider as BaseContacta
 
 class ContactableAuthProvider extends BaseContactableAuthProvider {
 
-    protected $userModel = \GridPrinciples\Contactable\Tests\Mocks\User::class;
+    protected $model = \GridPrinciples\Contactable\Tests\Mocks\User::class;
 
 }

@@ -7,8 +7,6 @@ use Illuminate\Contracts\Auth\UserProvider;
 
 class ContactableAuthProvider extends EloquentUserProvider implements UserProvider
 {
-    protected $userModel = \App\User::class;
-
     /**
      * Retrieve a user by the given credentials.
      *
@@ -21,7 +19,7 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
         $email = array_get($credentials, config('contactable.input_key.emails'));
         $phone = array_get($credentials, config('contactable.input_key.phones'));
 
-        $query = with(new $this->userModel)->newQuery();
+        $query = $this->createModel()->newQuery();
 
         if (empty(array_filter(config('contactable.login_methods')))) {
             // No login methods active; fail.

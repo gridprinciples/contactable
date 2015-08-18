@@ -23,13 +23,14 @@ abstract class TestCase extends BaseTestCase
         $app->register(ContactableServiceProvider::class);
 
         // Bind the auth implementation with a mocked one so we may inject the mock User class
-        $app->bind('ContactableAuthProvider', function ($app) {
-            return new \GridPrinciples\Contactable\Tests\Mocks\ContactableAuthProvider(app('hash'), '\App\User');
-        });
+//        $app->bind('ContactableAuthProvider', function ($app) {
+//            return new \GridPrinciples\Contactable\Tests\Mocks\ContactableAuthProvider(app('hash'), '\App\User');
+//        });
 
         // Set app configuration
         config([
             'auth.driver' => 'contactable',
+            'auth.model' => \GridPrinciples\Contactable\Tests\Mocks\User::class,
         ]);
 
         return $app;
