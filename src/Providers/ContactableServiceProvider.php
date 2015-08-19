@@ -37,6 +37,10 @@ class ContactableServiceProvider extends ServiceProvider
             __DIR__.'/../Migrations/' => database_path('migrations')
         ], 'migrations');
 
+        // Load views
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contactable');
+
+        // Bind the authentication provider
         app()->bind('ContactableAuthProvider', function () {
             return new ContactableAuthProvider(app('hash'), config('auth.model', \App\User::class));
         });

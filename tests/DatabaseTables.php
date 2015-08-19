@@ -12,14 +12,16 @@ class DatabaseTables extends DatabaseTestCase
      */
     public function test_tables_exist()
     {
-        foreach ([
-                     'users',
-                     'password_resets',
-                     'email_addresses',
-                     'phone_numbers',
-                 ] as $table) {
+        $expectedTables = [
+            'users',
+            'password_resets',
+            'email_addresses',
+            'phone_numbers',
+            'addresses',
+        ];
+
+        foreach ($expectedTables as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
     }
-
 }

@@ -3,5 +3,5 @@
 namespace GridPrinciples\Contactable\Traits;
 
 trait Contactable {
-    use Emailable, Phonable;
+    use Emailable, Phonable, Addressable;
 }
