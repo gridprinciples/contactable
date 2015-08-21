@@ -10,8 +10,8 @@ class CreateConnectionsTable extends Migration {
 		Schema::create('connections', function(Blueprint $table) {
 			$table->bigIncrements('id');
 
-			$table->bigInteger('party_id')->unsigned()->index();
-			$table->bigInteger('other_party_id')->unsigned()->index();
+			$table->integer('user_id')->unsigned()->index();
+			$table->integer('other_user_id')->unsigned()->index();
 
 			$table->string('name')->nullable(); // party_id's title.  "Party names Other Party"
 			$table->string('other_name')->nullable(); // other_party_id's title. "Other Party names Party"

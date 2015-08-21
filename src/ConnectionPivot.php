@@ -31,6 +31,6 @@ class ConnectionPivot extends Pivot
      */
     protected function parentIsPrimaryUser()
     {
-        return (int) $this->parent->getKey() === (int) $this->getAttribute('party_id');
+        return (int) $this->parent->getKey() === (int) $this->getAttribute('user_id');
     }
 }

@@ -22,13 +22,13 @@ trait Connectable
 
     function myConnections()
     {
-        return $this->belongsToMany(get_called_class(), 'connections', 'party_id', 'other_party_id')
+        return $this->belongsToMany(get_called_class(), 'connections', 'user_id', 'other_user_id')
             ->withPivot('name', 'other_name', 'start', 'end');
     }
 
     function theirConnections()
     {
-        return $this->belongsToMany(get_called_class(), 'connections', 'other_party_id', 'party_id')
+        return $this->belongsToMany(get_called_class(), 'connections', 'other_user_id', 'user_id')
             ->withPivot('name', 'other_name', 'start', 'end');
     }
 
