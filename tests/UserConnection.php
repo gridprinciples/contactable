@@ -8,7 +8,7 @@ class UserConnection extends UserTestCase
     public function test_users_can_be_connected()
     {
         $captain = $this->createUser([
-            'name' => 'Jean-luc Picard',
+            'name' => 'Jean-Luc Picard',
         ]);
 
         $first_officer = $this->createUser([
