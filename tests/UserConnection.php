@@ -42,4 +42,47 @@ class UserConnection extends UserTestCase
         $this->assertContains('Dad', $parent->connections->lists('pivot.name'));
         $this->assertContains('Son', $parent->connections->lists('pivot.other_name'));
     }
+
+    public function test_active_user_connections()
+    {
+        $band = $this->createUser([
+            'name' => 'Pink Floyd',
+        ]);
+
+        $bassist = $this->createUser([
+            'name' => 'Roger Waters',
+        ]);
+
+        $drummer = $this->createUser([
+            'name' => 'Nick Mason',
+        ]);
+
+        $guitarist = $this->createUser([
+            'name' => 'David Gilmour',
+        ]);
+
+        $singer = $this->createUser([
+            'name' => 'Syd Barrett',
+        ]);
+
+        $band->connect($drummer);
+        $band->connect($bassist, [
+            'start' => '08-01-1967',
+            'end' => '01-01-2025',
+        ]);
+        $band->connect($guitarist, [
+            'start' => '12-01-1967',
+            'end' => '07-02-2005',
+        ]);
+        $band->connect($singer, [
+            'end' => '01-01-1968',
+        ]);
+
+        $activeMembers = $band->active_connections->lists('name');
+
+        $this->assertContains('Nick Mason', $activeMembers);
+        $this->assertContains('Roger Waters', $activeMembers);
+        $this->assertNotContains('Syd Barrett', $activeMembers);
+        $this->assertNotContains('David Gilmour', $activeMembers);
+    }
 }

@@ -24,6 +24,16 @@ class ConnectionPivot extends Pivot
         return $this->attributes['name'];
     }
 
+    protected function getStartAttribute($value)
+    {
+        return $value ? new \Carbon\Carbon($value) : null;
+    }
+
+    protected function getEndAttribute($value)
+    {
+        return $value ? new \Carbon\Carbon($value) : null;
+    }
+
     /**
      * Determines whether or not this pivot's parent is the `user`, not `other_user`
      *
