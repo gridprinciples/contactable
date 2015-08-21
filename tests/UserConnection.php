@@ -18,7 +18,7 @@ class UserConnection extends UserTestCase
         $captain->connect($first_officer);
 
         $this->assertContains('William Riker', $captain->connections->lists('name'));
-        $this->assertContains('Jean-luc Picard', $first_officer->connections->lists('name'));
+        $this->assertContains('Jean-Luc Picard', $first_officer->connections->lists('name'));
     }
 
     public function test_user_connections_can_hold_title()
