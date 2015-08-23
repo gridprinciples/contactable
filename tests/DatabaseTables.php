@@ -18,7 +18,6 @@ class DatabaseTables extends DatabaseTestCase
             'email_addresses',
             'phone_numbers',
             'addresses',
-            'connections',
         ];
 
         foreach ($expectedTables as $table) {
