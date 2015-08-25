@@ -1,0 +1,19 @@
+{
+  "name": "contactable",
+  "version": "gh-pages",
+  "homepage": "https://github.com/gridprinciples/contactable",
+  "authors": [
+    "gbrock <greg@gridprinciples.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5"
+  }
+}
