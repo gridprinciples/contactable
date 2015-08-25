@@ -1,3 +1,2 @@
-composer.phar
-composer.lock
-vendor
+_site
+.sass-cache
