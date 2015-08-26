@@ -12,3 +12,4 @@ github_username:  gridprinciples
 
 # Build settings
 markdown: kramdown
+highlighter: pygments
