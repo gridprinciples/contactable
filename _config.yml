@@ -1,8 +1,7 @@
 # Site settings
 title: Contactable
 description: > # this means to ignore newlines until "baseurl:"
-  A Laravel package designed to enhance Eloquent users (or
-  any other model) with relations to multiple e-mail addresses
+  Enhance Laravel users with relations to multiple e-mail addresses
   and phone numbers, additionally allowing users to login with
   any of the above.
 baseurl: "" # the subpath of your site, e.g. /blog/
