@@ -3,6 +3,8 @@
 namespace GridPrinciples\Contactable\Tests\Cases;
 
 use GridPrinciples\Contactable\Tests\Mocks\User;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 abstract class UserTestCase extends DatabaseTestCase {
 
@@ -10,6 +12,10 @@ abstract class UserTestCase extends DatabaseTestCase {
 
     protected function createUser($attributes = [])
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('email');
+        });
+
         $defaultAttributes = [
             'name' => 'Human Being',
             'password' => bcrypt('password'),
