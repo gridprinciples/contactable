@@ -24,5 +24,6 @@ weight: 1
 
        php artisan migrate
           
-    This will add `email_addresses` and `phone_numbers` tables to your database, as well as make some changes to the
-    `users` table.
+    This will add `email_addresses` and `phone_numbers` tables to your database.
+
+1. Remove the `email` column from your `create_users_table` table migration, if applicable.
