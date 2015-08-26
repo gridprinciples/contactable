@@ -11,11 +11,11 @@
         </a>
       </li>
       {% endif %}
-      {% if site.github_username %}
+      {% if site.project_url %}
       <li>
-        <a href="https://github.com/{{ site.github_username }}">
+        <a href="{{ site.project_url }}">
           <i class="fa fa-github">&nbsp;</i>
-          <span class="username">{{ site.github_username }}</span>
+          <span class="sr-only">{{ site.project_url }}</span>
         </a>
       </li>
       {% endif %}
@@ -23,7 +23,7 @@
       <li>
         <a href="https://twitter.com/{{ site.twitter_username }}">
           <i class="fa fa-twitter">&nbsp;</i>
-          <span class="username">{{ site.twitter_username }}</span>
+          <span class="sr-only">{{ site.twitter_username }}</span>
         </a>
       </li>
       {% endif %}
@@ -32,7 +32,8 @@
     <div class="site-info">
       <h2 class="footer-heading">{{ site.title }}</h2>
       <p class="legal">
-        Developed by <a href="{{ site.url }}"><i class="fa fa-grid-principles">&nbsp;</i><span class="sr-only">Grid Principles</span></a><br>
+        <!--Developed by <a href="{{ site.url }}"><i class="fa fa-grid-principles">&nbsp;</i><span class="sr-only">Grid Principles</span></a>-->
+        <!--&bull;&nbsp;-->
         Licensed under <a href="https://github.com/gridprinciples/contactable/blob/master/license.txt">MIT</a>
       </p>
     </div>

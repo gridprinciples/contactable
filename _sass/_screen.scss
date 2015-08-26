@@ -23,12 +23,12 @@ body {
     padding: 4em 0;
     color: mix($body-bg, $brand-primary, 70%);
     text-shadow: 0 -1px mix($brand-primary, $gray-base, 50%);
+    text-align: center;
 
     a {
         text-decoration: none;
         color: mix($body-bg, $brand-primary, 80%);
         color: $body-bg;
-        display: inline-block;
 
 
         &:hover, &:focus {
@@ -45,19 +45,24 @@ body {
     }
 
     @media (min-width: $screen-sm-min) {
+        text-align: left;
         .site-title {
+            float: left;
             //margin-left: -($padding-large-horizontal + ($grid-gutter-width / 2) + 4px);
         }
 
         .site-description {
+            clear: left;
             //margin-left: -($padding-large-horizontal);
         }
     }
 }
 
 .site-nav {
-    float: right;
-    margin-left: 3px;
+    text-align: center;
+    display: inline-block;
+    @include clearfix;
+    margin: 0 auto 1em;
 
     a {
         padding: $padding-large-vertical $padding-large-horizontal ($padding-large-vertical + $nav-border-width);
@@ -74,6 +79,8 @@ body {
     }
 
     @media (min-width: $screen-sm-min) {
+        float: right;
+        text-align: left;
         //margin-right: -($padding-large-horizontal + ($grid-gutter-width / 2));
     }
 }
@@ -83,6 +90,7 @@ body {
     font-size: $font-size-h2;
     font-weight: 300;
     text-transform: uppercase;
+    display: block;
 }
 
 .page-content {
@@ -109,6 +117,7 @@ body {
     .social-links {
         float: right;
         @extend .list-inline;
+        font-size: $font-size-h1;
     }
 
     .site-info {
@@ -160,9 +169,10 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 3em;
     }
 
-    li {
-        pre:last-child {
-            margin-bottom: 3em;
+    > .highlight:last-child {
+        &, pre {
+            margin-bottom: -($grid-gutter-width / 2);
+
         }
     }
 }
@@ -195,10 +205,37 @@ h1, h2, h3, h4, h5, h6 {
         border-radius: 0;
         margin-left: -($grid-gutter-width / 2);
         margin-right: -($grid-gutter-width / 2);
+        padding: ($grid-gutter-width / 2);
+        margin-bottom: 3em;
     }
 
     li pre {
         margin-left: -(($grid-gutter-width / 2) + 40px);
         padding-left: $padding-base-horizontal + 45px;
     }
+}
+
+.infographic {
+    background: url('../assets/infographic.png') no-repeat;
+    background-size: 240px;
+    background-position-x: -100px;
+    padding-left: 160px;
+    margin-bottom: 2em;
+
+    @media (min-width: $screen-sm-min) {
+        background-size: contain;
+        background-position-x: 0;
+        min-height: 600px;
+        padding-right: 250px;
+        padding-left: 0;
+
+        h2 {
+            padding-top: 2em;
+            margin-bottom: 220px;
+        }
+    }
+}
+
+.btn {
+    border-width: 0px;
 }
