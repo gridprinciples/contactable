@@ -5,18 +5,9 @@
     <a class="site-title" href="{{ site.baseurl }}/"><i class="fa fa-book">&nbsp;</i>{{ site.title }}</a>
 
     <nav class="site-nav">
-      {% assign pages = site.pages | sort:"weight"  %}
-      {% for node in pages %}
-      {% unless node.exclude_from_nav %}
-        {% if node.title %}
-          {% if page.url == node.url %}
-          <a href="{{node.url}}" class="active">{{node.title}}</a>
-          {% else %}
-          <a href="{{node.url}}">{{node.title}}</a>
-          {% endif %}
-        {% endif %}
-      {% endunless %}
-      {% endfor %}
+      {% assign pages = site.pages | sort:"weight"  %}{% for node in pages %}{% unless node.exclude_from_nav %}{% if node.title %}{% if page.url == node.url %}
+          <a href="{{node.url}}" class="active">{{node.title}}</a>{% else %}
+          <a href="{{node.url}}">{{node.title}}</a>{% endif %}{% endif %}{% endunless %}{% endfor %}
     </nav>
 
     <p class="site-description">{{ site.description }}</p>
