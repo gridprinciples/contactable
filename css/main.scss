@@ -3,16 +3,16 @@ layout: null
 ---
 @charset "utf-8";
 
-//@import "variables";
-//
-//%vertical-rhythm {
-//        margin-bottom: ($line-height-computed / 2);
-//}
-//
-//// Import partials from `sass_dir` (defaults to `_sass`)
-//@import
-//        "bootstrap",
-//        "screen",
-//        "fonts",
-//        "syntax-highlighting"
-//;
+@import "variables";
+
+%vertical-rhythm {
+        margin-bottom: ($line-height-computed / 2);
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "bootstrap",
+        "screen",
+        "fonts",
+        "syntax-highlighting"
+;
