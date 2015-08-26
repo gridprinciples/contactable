@@ -6,6 +6,9 @@
             "GridPrinciples\\Contactable\\": "src/"
         }
     },
+    "require": {
+        "doctrine/dbal": "^2.5"
+    },
     "require-dev": {
         "laravel/laravel": "^5.1",
         "phpunit/phpunit": "~4.0",
