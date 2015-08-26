@@ -1,16 +1,25 @@
 <header class="site-header">
 
-  <div class="wrapper">
+  <div class="container">
 
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    <a class="site-title" href="{{ site.baseurl }}/"><i class="fa fa-book">&nbsp;</i>{{ site.title }}</a>
 
     <nav class="site-nav">
-      {% for page in site.pages %}
-        {% if page.title %}
-        <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+      {% assign pages = site.pages | sort:"weight"  %}
+      {% for node in pages %}
+      {% unless node.exclude_from_nav %}
+        {% if node.title %}
+          {% if page.url == node.url %}
+          <a href="{{node.url}}" class="active">{{node.title}}</a>
+          {% else %}
+          <a href="{{node.url}}">{{node.title}}</a>
+          {% endif %}
         {% endif %}
+      {% endunless %}
       {% endfor %}
     </nav>
+
+    <p class="site-description">{{ site.description }}</p>
 
   </div>
 

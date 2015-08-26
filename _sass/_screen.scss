@@ -1,0 +1,204 @@
+body {
+    background: url(../assets/background-pattern.png);
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.container {
+    @include container-fixed;
+
+    @media (min-width: $screen-sm-min) {
+        width: $container-sm;
+    }
+}
+
+.site-header {
+    background-color: $brand-primary;
+    padding: 4em 0;
+    color: mix($body-bg, $brand-primary, 70%);
+    text-shadow: 0 -1px mix($brand-primary, $gray-base, 50%);
+
+    a {
+        text-decoration: none;
+        color: mix($body-bg, $brand-primary, 80%);
+        color: $body-bg;
+        display: inline-block;
+
+
+        &:hover, &:focus {
+            color: $body-bg;
+        }
+    }
+
+    .site-title {
+        font-weight: 600;
+        padding: $padding-large-vertical 0;
+        //margin-left: -(($grid-gutter-width / 2) + 4px);
+        margin-top: -10px;
+        @extend %vertical-rhythm;
+    }
+
+    @media (min-width: $screen-sm-min) {
+        .site-title {
+            //margin-left: -($padding-large-horizontal + ($grid-gutter-width / 2) + 4px);
+        }
+
+        .site-description {
+            //margin-left: -($padding-large-horizontal);
+        }
+    }
+}
+
+.site-nav {
+    float: right;
+    margin-left: 3px;
+
+    a {
+        padding: $padding-large-vertical $padding-large-horizontal ($padding-large-vertical + $nav-border-width);
+        float: left;
+
+        &:hover, &:focus {
+            padding-bottom: $padding-large-vertical;
+            border-bottom: $nav-border-width solid lighten($brand-primary, 20%);
+        }
+
+        &.active {
+            background-color: mix($body-bg, $brand-primary, 10%);
+        }
+    }
+
+    @media (min-width: $screen-sm-min) {
+        //margin-right: -($padding-large-horizontal + ($grid-gutter-width / 2));
+    }
+}
+
+.site-title {
+    //font-family: $font-family-header;
+    font-size: $font-size-h2;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.page-content {
+    .container {
+        background-color: $body-bg;
+    }
+}
+
+.site-footer {
+    @include clearfix;
+    padding: 4em 0;
+    background-color: $gray-dark;
+    color: darken($gray-lighter, 10%);
+
+    a {
+        text-decoration: none;
+        color: mix($body-bg, $brand-primary, 60%);
+
+        &:hover, &:focus {
+            color: $body-bg;
+        }
+    }
+
+    .social-links {
+        float: right;
+        @extend .list-inline;
+    }
+
+    .site-info {
+        float: left;
+    }
+
+    .fa-grid-principles {
+        position: relative;
+        top: 3px;
+        right: -3px;
+    }
+}
+
+.footer-heading {
+    //font-family: $font-family-header;
+    font-size: $font-size-h4;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+}
+
+.page-content {
+
+    .container {
+        padding-top: ($grid-gutter-width / 2);
+        padding-bottom: ($grid-gutter-width / 2);
+        box-shadow: 0 2px 8px 2px rgba($gray-base, .04);
+    }
+
+    @media (min-width: $screen-sm-min) {
+        margin: 4em 0;
+    }
+}
+
+.post-title {
+    margin-bottom: 1em;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-header;
+}
+
+.post-content {
+    h1, h2, h3, h4, h5, h6 {
+        margin: 3em 0 1em;
+    }
+
+    ol {
+        padding-left: 40px;
+        margin-bottom: 3em;
+    }
+
+    li {
+        pre:last-child {
+            margin-bottom: 3em;
+        }
+    }
+}
+
+.container {
+    position: relative;
+    ol {
+        counter-reset: ol-counter;
+        list-style: none;
+
+        li {
+            &:before {
+                @extend .no-select;
+                font-family: $font-family-header;
+                font-weight: 600;
+                color: $gray-light;
+                position: absolute;
+                text-align: right;
+                width: 45px;
+                left: 0;
+                content: counter(ol-counter, decimal-leading-zero);
+                counter-increment: ol-counter;
+            }
+        }
+    }
+
+    pre {
+        background-color: $gray-lighter;
+        border: 0;
+        border-radius: 0;
+        margin-left: -($grid-gutter-width / 2);
+        margin-right: -($grid-gutter-width / 2);
+    }
+
+    li pre {
+        margin-left: -(($grid-gutter-width / 2) + 40px);
+        padding-left: $padding-base-horizontal + 45px;
+    }
+}

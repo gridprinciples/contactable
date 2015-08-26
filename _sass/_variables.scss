@@ -1,3 +1,13 @@
 // variables here
+$font-family-base: 'Rubik';
+$font-size-base: 15px;
+$body-bg: #FAFAFA;
+$brand-primary: #4B6187;
+$brand-warning: #FCA311;
+$brand-info: #93DDDB;
+
+$nav-border-width: 2px;
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+$font-family-header: $font-family-base;

@@ -1,10 +1,10 @@
 # Site settings
 title: Contactable
-email: hello@gridprinciples.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A Laravel package designed to enhance Eloquent users (or
+  any other model) with relations to multiple e-mail addresses
+  and phone numbers, additionally allowing users to login with
+  any of the above.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://gridprinciples.com" # the base hostname & protocol for your site
 twitter_username: gridprinciples

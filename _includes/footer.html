@@ -1,15 +1,20 @@
 <footer class="site-footer">
 
-  <div class="wrapper">
+  <div class="container">
 
-    <h2 class="footer-heading">{{ site.title }}</h2>
-    <p class="text">{{ site.description }}</p>
-
-    <ul>
-      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+    <ul class="social-links">
+      {% if site.email %}
+      <li>
+        <a href="mailto:{{ site.email }}">
+          <i class="fa fa-email">&nbsp;</i>
+          {{ site.email }}
+        </a>
+      </li>
+      {% endif %}
       {% if site.github_username %}
       <li>
         <a href="https://github.com/{{ site.github_username }}">
+          <i class="fa fa-github">&nbsp;</i>
           <span class="username">{{ site.github_username }}</span>
         </a>
       </li>
@@ -17,11 +22,20 @@
       {% if site.twitter_username %}
       <li>
         <a href="https://twitter.com/{{ site.twitter_username }}">
+          <i class="fa fa-twitter">&nbsp;</i>
           <span class="username">{{ site.twitter_username }}</span>
         </a>
       </li>
       {% endif %}
     </ul>
+
+    <div class="site-info">
+      <h2 class="footer-heading">{{ site.title }}</h2>
+      <p class="legal">
+        Developed by <a href="{{ site.url }}"><i class="fa fa-grid-principles">&nbsp;</i><span class="sr-only">Grid Principles</span></a><br>
+        Licensed under <a href="https://github.com/gridprinciples/contactable/blob/master/license.txt">MIT</a>
+      </p>
+    </div>
 
   </div>
 
