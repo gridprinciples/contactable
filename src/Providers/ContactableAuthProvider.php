@@ -21,28 +21,37 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
 
         $query = $this->createModel()->newQuery();
 
+        $startedWheres = false;
+
         if (empty(array_filter(config('contactable.login_methods')))) {
             // No login methods active; fail.
             return null;
         }
 
         if (config('contactable.login_methods.emails')) {
+            $funcName = $startedWheres ? 'orWhereHas' : 'whereHas';
+            $startedWheres = true;
             // login via e-mail
-            $query->orWhereHas('emails', function ($q) use ($email) {
+            $query->$funcName('emails', function ($q) use ($email) {
                 $q->where('address', '=', strtolower($email));
             });
         }
 
         if (config('contactable.login_methods.phones')) {
+            $funcName = $startedWheres ? 'orWhereHas' : 'whereHas';
+            $startedWheres = true;
+
             // login via phone
-            $query->orWhereHas('phones', function ($q) use ($phone) {
+            $query->$funcName('phones', function ($q) use ($phone) {
                 $q->where('raw_number', '=', preg_replace("/[^0-9]/", '', $phone));
             });
         }
 
         if (config('contactable.login_methods.username')) {
+            $funcName = $startedWheres ? 'orWhere' : 'where';
+            $startedWheres = true;
             // login via username
-            $query->orWhere('name', '=', strtolower($username));
+            $query->$funcName('name', '=', strtolower($username));
         }
 
         return $query->first();
