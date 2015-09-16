@@ -12,6 +12,7 @@ class CreatePhoneNumbersTable extends Migration
 
             $table->string('number');
             $table->string('raw_number')->unique();
+            $table->string('extension')->nullable();
             $table->string('type', 64)->nullable()->default('work');
             $table->string('country', 2)->default('us');
 

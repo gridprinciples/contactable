@@ -10,8 +10,8 @@ class PhoneNumber extends Model {
     use SoftDeletes;
 
     protected $table = 'phone_numbers';
-    protected $fillable = ['number', 'type', 'country'];
-    protected $visible = ['number', 'type', 'country'];
+    protected $fillable = ['number', 'extension', 'type', 'country'];
+    protected $visible = ['number', 'extension', 'type', 'country'];
 
     /**
      * Relationship to other models.
