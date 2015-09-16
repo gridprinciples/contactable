@@ -44,4 +44,10 @@ class PhoneNumber extends Model {
         $this->attributes['raw_number'] = preg_replace("/[^0-9]/", '', $value);
     }
 
+    public function getFullNumberAttribute()
+    {
+        return $this->getAttribute('number') .
+            ($this->getAttribute('extension') ? ' ext. ' . $this->getAttribute('extension') : '');
+    }
+
 }
