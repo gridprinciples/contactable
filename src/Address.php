@@ -12,6 +12,7 @@ class Address extends Model {
     protected $table = 'addresses';
     protected $fillable = ['street', 'street_extra', 'city', 'subdivision', 'state', 'province', 'postal_code', 'zip', 'zip_code', 'country'];
     protected $visible = ['street', 'street_extra', 'city', 'subdivision', 'postal_code', 'country'];
+    protected $touches = ['addressable'];
 
     /**
      * Relationship to other models.

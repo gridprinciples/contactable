@@ -12,6 +12,7 @@ class EmailAddress extends Model {
     protected $table = 'email_addresses';
     protected $fillable = ['address'];
     protected $visible = ['address'];
+    protected $touches = ['emailable'];
 
     /**
      * Relationship to other models.

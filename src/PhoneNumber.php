@@ -12,6 +12,7 @@ class PhoneNumber extends Model {
     protected $table = 'phone_numbers';
     protected $fillable = ['number', 'extension', 'type', 'country'];
     protected $visible = ['number', 'extension', 'type', 'country'];
+    protected $touches = ['phonable'];
 
     /**
      * Relationship to other models.
