@@ -17,6 +17,6 @@ trait Phonable
      */
     public function phones()
     {
-        return $this->morphMany(PhoneNumber::class, 'phonable');
+        return $this->morphMany(config('contactable.models.phone', PhoneNumber::class), 'phonable');
     }
 }

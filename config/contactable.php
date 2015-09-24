@@ -13,5 +13,10 @@ return [
         'username' => 'username',
         'emails' => 'username',
         'phones' => 'username',
+    ],
+    'models' => [
+        'email' => \GridPrinciples\Contactable\EmailAddress::class,
+        'phone' => \GridPrinciples\Contactable\PhoneNumber::class,
+        'address' => \GridPrinciples\Contactable\Address::class,
     ]
 ];

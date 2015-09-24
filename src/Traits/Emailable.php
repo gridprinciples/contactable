@@ -17,6 +17,6 @@ trait Emailable
      */
     public function emails()
     {
-        return $this->morphMany(EmailAddress::class, 'emailable');
+        return $this->morphMany(config('contactable.models.email', EmailAddress::class), 'emailable');
     }
 }
