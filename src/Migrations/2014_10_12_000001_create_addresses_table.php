@@ -20,6 +20,8 @@ class CreateAddressesTable extends Migration {
             $table->string('country', 2)->nullable()->default('us');
             $table->string('postal_code')->nullable();
 
+            $table->smallInteger('position')->unsigned();
+
             $table->timestamps();
             $table->softDeletes();
         });

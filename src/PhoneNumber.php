@@ -2,14 +2,17 @@
 
 namespace GridPrinciples\Contactable;
 
+use GridPrinciples\Contactable\Traits\IncrementsPosition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PhoneNumber extends Model {
 
-    use SoftDeletes;
+    use SoftDeletes, IncrementsPosition;
 
     protected $table = 'phone_numbers';
+    protected $autoPositionBasedOnFields = ['phonable_id', 'phonable_type'];
+
     protected $fillable = ['number', 'extension', 'type', 'country'];
     protected $visible = ['number', 'extension', 'type', 'country'];
     protected $touches = ['phonable'];

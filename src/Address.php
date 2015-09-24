@@ -2,14 +2,17 @@
 
 namespace GridPrinciples\Contactable;
 
+use GridPrinciples\Contactable\Traits\IncrementsPosition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model {
 
-    use SoftDeletes;
+    use SoftDeletes, IncrementsPosition;
 
     protected $table = 'addresses';
+    protected $autoPositionBasedOnFields = ['addressable_id', 'addressable_type'];
+
     protected $fillable = ['street', 'street_extra', 'city', 'subdivision', 'state', 'province', 'postal_code', 'zip', 'zip_code', 'country'];
     protected $visible = ['street', 'street_extra', 'city', 'subdivision', 'postal_code', 'country'];
     protected $touches = ['addressable'];

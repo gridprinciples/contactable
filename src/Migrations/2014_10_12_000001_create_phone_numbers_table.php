@@ -19,6 +19,8 @@ class CreatePhoneNumbersTable extends Migration
             $table->bigInteger('phonable_id')->unsigned()->index();
             $table->string('phonable_type');
 
+            $table->smallInteger('position')->unsigned();
+
             $table->timestamps();
             $table->softDeletes();
         });
