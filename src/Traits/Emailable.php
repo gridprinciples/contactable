@@ -17,6 +17,12 @@ trait Emailable
      */
     public function emails()
     {
-        return $this->morphMany(config('contactable.models.email', EmailAddress::class), 'emailable');
+        return $this->morphMany(config('contactable.models.email', EmailAddress::class), 'emailable')
+            ->orderBy('position', 'asc');
+    }
+
+    public function primaryEmail()
+    {
+        return $this->emails ? $this->emails->first() : null;
     }
 }

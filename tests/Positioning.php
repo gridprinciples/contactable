@@ -31,4 +31,23 @@ class Positioning extends UserTestCase {
         $this->assertEquals([0,1,2], $user->phones()->lists('position')->toArray());
         $this->assertEquals([0,1,2,3], $user->addresses()->lists('position')->toArray());
     }
+
+    public function test_can_access_primary_items()
+    {
+        $user = $this->createUser(['name' => 'The Simpsons']);
+
+        $user->emails()->save(new EmailAddress(['address' => 'homer@example.com']));
+        $user->emails()->save(new EmailAddress(['address' => 'marge@example.com']));
+
+        $user->phones()->save(new PhoneNumber(['number' => '234 567 8901']));
+
+        $user->addresses()->save(new Address(['city' => 'Springfield']));
+        $user->addresses()->save(new Address(['city' => 'Ogdenville']));
+        $user->addresses()->save(new Address(['city' => 'Brockway']));
+        $user->addresses()->save(new Address(['city' => 'North Haverbrook']));
+
+        $this->assertEquals('homer@example.com', $user->primaryEmail()->address);
+        $this->assertEquals('234 567 8901', $user->primaryPhone()->number);
+        $this->assertEquals('Springfield', $user->primaryAddress()->city);
+    }
 }

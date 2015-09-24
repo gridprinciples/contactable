@@ -17,6 +17,12 @@ trait Phonable
      */
     public function phones()
     {
-        return $this->morphMany(config('contactable.models.phone', PhoneNumber::class), 'phonable');
+        return $this->morphMany(config('contactable.models.phone', PhoneNumber::class), 'phonable')
+            ->orderBy('position', 'asc');
+    }
+
+    public function primaryPhone()
+    {
+        return $this->phones ? $this->phones->first() : null;
     }
 }
