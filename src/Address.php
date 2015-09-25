@@ -49,8 +49,13 @@ class Address extends Model {
 
     public function render()
     {
-//        return trans('contactable::address', $this->toArray());
-        return view('contactable::address.' . $this->country, $this->toArray());
+        return view('contactable::address.' . $this->country, $this->toArray())
+            ->render();
+    }
+
+    public function getRenderedAttribute()
+    {
+        return $this->render();
     }
 
     public function __toString()
