@@ -42,11 +42,11 @@ class ContactableServiceProvider extends ServiceProvider
 
         // Bind the authentication provider
         app()->bind('ContactableAuthProvider', function () {
-            return new ContactableAuthProvider(app('hash'), config('auth.model', \App\User::class));
+            return new ContactableAuthProvider(app('hash'), config('auth.providers.users.model', \App\User::class));
         });
 
         // Add authentication driver
-        Auth::extend('contactable', function($app) {
+        Auth::provider('contactable', function($app) {
             // Return an instance of Illuminate\Contracts\Auth\UserProvider...
             return $app->make('ContactableAuthProvider');
         });
