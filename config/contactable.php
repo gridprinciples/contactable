@@ -14,6 +14,9 @@ return [
         'emails' => 'username',
         'phones' => 'username',
     ],
+    // Which field should be matched for authenticating "username"
+    'username_field' => 'name',
+    // Which models should be used throughout the package
     'models' => [
         'email' => \GridPrinciples\Contactable\EmailAddress::class,
         'phone' => \GridPrinciples\Contactable\PhoneNumber::class,

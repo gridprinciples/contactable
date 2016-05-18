@@ -51,7 +51,7 @@ class ContactableAuthProvider extends EloquentUserProvider implements UserProvid
             $funcName = $startedWheres ? 'orWhere' : 'where';
             $startedWheres = true;
             // login via username
-            $query->$funcName('name', '=', strtolower($username));
+            $query->$funcName(config('contactable.username_field', 'name'), '=', strtolower($username));
         }
 
         return $query->first();
